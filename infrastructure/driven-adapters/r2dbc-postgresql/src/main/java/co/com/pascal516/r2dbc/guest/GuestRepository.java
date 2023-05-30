@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Mono;
 
-import java.util.UUID;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,7 +19,7 @@ public class GuestRepository implements IGuestRepository {
     private static final GuestMapper mapper = new GuestMapper();
 
     @Override
-    public Mono<Guest> findById(UUID guestId) {
+    public Mono<Guest> findById(String guestId) {
         log.log(Level.INFO, "FINDING GUEST: {0}", guestId);
         return iGuest.findById(guestId)
                 .map(mapper::toModel);

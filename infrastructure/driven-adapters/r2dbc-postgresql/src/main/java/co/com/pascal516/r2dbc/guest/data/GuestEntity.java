@@ -7,7 +7,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
-import java.util.UUID;
+
 
 @Data
 @Builder(toBuilder = true)
@@ -16,7 +16,7 @@ import java.util.UUID;
 public class GuestEntity {
     @Id
     @Column(value = "guest_id")
-    private UUID idGuest;
+    private String idGuest;
     @Column(value = "guest_name")
     private String guestName;
     @Column(value = "contact_number")

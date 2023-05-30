@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Mono;
 
-import java.util.UUID;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,7 +19,7 @@ public class BookingRepository implements IBookingRepository {
     private static final BookingMapper mapper = new BookingMapper();
 
     @Override
-    public Mono<Booking> findById(UUID bookingId) {
+    public Mono<Booking> findById(String bookingId) {
         log.log(Level.INFO, "FINDING BOOKING: {0}", bookingId);
         return iBooking.findById(bookingId)
                 .map(mapper::toModel);

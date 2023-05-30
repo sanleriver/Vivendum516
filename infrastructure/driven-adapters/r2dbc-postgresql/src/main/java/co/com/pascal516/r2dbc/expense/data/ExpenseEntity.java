@@ -8,7 +8,7 @@ import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDate;
-import java.util.UUID;
+
 
 @Data
 @Builder(toBuilder = true)
@@ -17,9 +17,9 @@ import java.util.UUID;
 public class ExpenseEntity {
     @Id
     @Column(value = "expense_id")
-    private UUID idExpense;
+    private String idExpense;
     @Column(value = "booking_id")
-    private UUID idBooking;
+    private String idBooking;
     @Column(value = "expense_concept")
     private String concept;
     @Column(value = "expense_date")

@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.UUID;
+
 
 @Getter
 @Setter
@@ -14,8 +14,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 public class Booking {
-    private UUID id;
-    private UUID guestId;
+    private String id;
+    private String guestId;
     private LocalDate entryDate;
     private LocalDate exitDate;
     private Long value;

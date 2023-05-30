@@ -19,6 +19,7 @@ public class MysqlConnectionPool {
 				.user("u410847206_apto516")
 				.password(HOLA)
 				.database("u410847206_pascal")
+				.tlsVersion("TLSv1.2")
 				.build();
 		return MySqlConnectionFactory.from(configuration);
 	}

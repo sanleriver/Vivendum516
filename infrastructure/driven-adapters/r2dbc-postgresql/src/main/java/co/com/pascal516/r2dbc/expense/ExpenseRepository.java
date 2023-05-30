@@ -7,7 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Mono;
 
-import java.util.UUID;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,7 +19,7 @@ public class ExpenseRepository implements IExpenseRepository {
     private static final ExpenseMapper mapper = new ExpenseMapper();
 
     @Override
-    public Mono<Expense> findById(UUID expenseId) {
+    public Mono<Expense> findById(String expenseId) {
         log.log(Level.INFO, "FINDING EXPENSE: {0}", expenseId);
         return iExpense.findById(expenseId)
                 .map(mapper::toModel);
