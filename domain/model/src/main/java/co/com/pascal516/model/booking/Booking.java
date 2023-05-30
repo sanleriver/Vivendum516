@@ -14,8 +14,8 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 public class Booking {
-    private String id;
-    private String guestId;
+    private UUID id;
+    private UUID guestId;
     private LocalDate entryDate;
     private LocalDate exitDate;
     private Long value;

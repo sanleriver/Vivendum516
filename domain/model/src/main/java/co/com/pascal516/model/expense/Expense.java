@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -13,8 +14,8 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 public class Expense {
-    private String id;
-    private String bookingId;
+    private UUID id;
+    private UUID bookingId;
     private String expenseConcept;
     private LocalDate expenseDate;
     private Long value;

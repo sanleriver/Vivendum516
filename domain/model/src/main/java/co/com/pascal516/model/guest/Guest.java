@@ -2,8 +2,9 @@ package co.com.pascal516.model.guest;
 import lombok.Builder;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-//import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -11,7 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 public class Guest {
-    private String id;
+    private UUID id;
     private String name;
     private String contactNumber;
 }
