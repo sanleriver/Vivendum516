@@ -24,4 +24,10 @@ public class GuestRepository implements IGuestRepository {
         return iGuest.findById(guestId)
                 .map(mapper::toModel);
     }
+
+    @Override
+    public Mono<Guest> save(Guest guest) {
+        return iGuest.customSave(guest)
+                .map(mapper::toModel);
+    }
 }

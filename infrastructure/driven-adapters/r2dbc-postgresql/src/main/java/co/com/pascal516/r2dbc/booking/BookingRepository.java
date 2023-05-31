@@ -2,6 +2,7 @@ package co.com.pascal516.r2dbc.booking;
 
 import co.com.pascal516.model.booking.Booking;
 import co.com.pascal516.model.booking.gateways.IBookingRepository;
+import co.com.pascal516.r2dbc.booking.data.BookingEntity;
 import co.com.pascal516.r2dbc.booking.data.BookingMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -22,6 +23,12 @@ public class BookingRepository implements IBookingRepository {
     public Mono<Booking> findById(String bookingId) {
         log.log(Level.INFO, "FINDING BOOKING: {0}", bookingId);
         return iBooking.findById(bookingId)
+                .map(mapper::toModel);
+    }
+
+    @Override
+    public Mono<Booking> save(Booking booking) {
+        return iBooking.customSave(booking)
                 .map(mapper::toModel);
     }
 }

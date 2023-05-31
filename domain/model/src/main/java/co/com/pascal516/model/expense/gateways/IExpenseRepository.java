@@ -7,4 +7,6 @@ import reactor.core.publisher.Mono;
 
 public interface IExpenseRepository {
     Mono<Expense> findById(String expenseId);
+
+    Mono<Expense> save(Expense expense);
 }

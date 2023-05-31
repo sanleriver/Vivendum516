@@ -16,4 +16,14 @@ public class BookingMapper {
                 .value(bookingEntity.getValue())
                 .build();
     }
+
+    public BookingEntity toEntity(Booking booking){
+        return BookingEntity.builder()
+                .idBooking(booking.getId())
+                .idGuest(booking.getGuestId())
+                .entryDate(booking.getEntryDate())
+                .exitDate(booking.getExitDate())
+                .value(booking.getValue())
+                .build();
+    }
 }

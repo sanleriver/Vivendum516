@@ -7,4 +7,6 @@ import reactor.core.publisher.Mono;
 
 public interface IGuestRepository {
     Mono<Guest> findById(String guestId);
+
+    Mono<Guest> save(Guest guest);
 }

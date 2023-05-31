@@ -24,4 +24,10 @@ public class ExpenseRepository implements IExpenseRepository {
         return iExpense.findById(expenseId)
                 .map(mapper::toModel);
     }
+
+    @Override
+    public Mono<Expense> save(Expense expense) {
+        return iExpense.customSave(expense)
+                .map(mapper::toModel);
+    }
 }

@@ -14,4 +14,12 @@ public class GuestMapper {
                 .contactNumber(guestEntity.getContactNumber())
                 .build();
     }
+
+    public GuestEntity toEntity(Guest guest){
+        return GuestEntity.builder()
+                .idGuest(guest.getId())
+                .guestName(guest.getName())
+                .contactNumber(guest.getContactNumber())
+                .build();
+    }
 }
