@@ -1,11 +1,13 @@
 package co.com.pascal516.r2dbc.booking;
 
 import co.com.pascal516.model.booking.Booking;
+import co.com.pascal516.model.booking.BookingGuest;
 import co.com.pascal516.model.booking.gateways.IBookingRepository;
 import co.com.pascal516.r2dbc.booking.data.BookingEntity;
 import co.com.pascal516.r2dbc.booking.data.BookingMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 
@@ -30,5 +32,10 @@ public class BookingRepository implements IBookingRepository {
     public Mono<Booking> save(Booking booking) {
         return iBooking.customSave(booking)
                 .map(mapper::toModel);
+    }
+
+    @Override
+    public Flux<BookingGuest> getAllBookings() {
+        return iBooking.findAllCompleteBookings();
     }
 }

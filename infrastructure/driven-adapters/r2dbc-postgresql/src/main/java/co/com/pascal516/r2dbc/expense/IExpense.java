@@ -6,9 +6,8 @@ import org.springframework.data.r2dbc.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.transaction.annotation.Transactional;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import java.nio.channels.FileChannel;
 
 
 public interface IExpense extends ReactiveCrudRepository<ExpenseEntity, String> {
@@ -19,4 +18,6 @@ public interface IExpense extends ReactiveCrudRepository<ExpenseEntity, String> 
             " :#{#expense.getExpenseDate()}, :#{#expense.getValue()})" +
             " RETURNING expense_id, booking_id, expense_concept, expense_date, expense_value")
     Mono<ExpenseEntity> customSave(@Param("expense") Expense expense);
+
+    Flux<ExpenseEntity> findAllByIdBookingOrderByExpenseDate(String bookingId);
 }

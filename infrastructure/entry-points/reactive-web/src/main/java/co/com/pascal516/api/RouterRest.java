@@ -15,8 +15,10 @@ public class RouterRest {
     public RouterFunction<ServerResponse> routerFunction(Handler handler) {
         return route(GET("/guest-name/{expenseId}"), handler::listenGETUseCase)
                 .andRoute(POST("/create-booking-guest"), handler::createBookingWithGuest)
-                .andRoute(POST("/create-expense"), handler::createExpense);
-                /*.andRoute(POST("/api/usecase/otherpath"), handler::listenPOSTUseCase)
-                .and(route(GET("/api/otherusercase/path"), handler::listenGETOtherUseCase));*/
+                .andRoute(POST("/create-expense"), handler::createExpense)
+                .andRoute(POST("/create-guest"), handler::createGuest)
+                .andRoute(POST("/create-booking"), handler::createBooking)
+                .andRoute(GET("/bookings"), handler::getBookings)
+                .andRoute(GET("/expenses/{bookingId}"), handler::getExpensesByBooking);
     }
 }

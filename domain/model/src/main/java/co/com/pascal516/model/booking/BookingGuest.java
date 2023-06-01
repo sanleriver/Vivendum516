@@ -12,9 +12,12 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder(toBuilder = true)
 public class BookingGuest {
+    private String bookingId;
+    private String guestId;
     private String name;
     private String contactNumber;
     private LocalDate entryDate;
     private LocalDate exitDate;
     private Long value;
+    private Long expenses;
 }

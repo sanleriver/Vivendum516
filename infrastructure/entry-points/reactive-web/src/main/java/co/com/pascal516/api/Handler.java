@@ -1,8 +1,6 @@
 package co.com.pascal516.api;
 
-import co.com.pascal516.api.model.BookingGuestDTO;
-import co.com.pascal516.api.model.ExpenseDTO;
-import co.com.pascal516.api.model.RestMapper;
+import co.com.pascal516.api.model.*;
 import co.com.pascal516.usecase.bookingscontrol.BookingsControlUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -38,5 +36,33 @@ public class Handler {
                 .flatMap(useCase::saveExpense)
                 .flatMap(message -> ServerResponse.ok().bodyValue(message))
                 .doOnError(error -> ServerResponse.badRequest().bodyValue(error.getMessage()));
+    }
+
+    public Mono<ServerResponse> createGuest(ServerRequest serverRequest) {
+        return serverRequest.bodyToMono(GuestDTO.class)
+                .map(mapper::guestToModel)
+                .flatMap(useCase::saveGuest)
+                .flatMap(message -> ServerResponse.ok().bodyValue(message))
+                .doOnError(error -> ServerResponse.badRequest().bodyValue(error.getMessage()));
+    }
+
+    public Mono<ServerResponse> createBooking(ServerRequest serverRequest) {
+        return serverRequest.bodyToMono(BookingDTO.class)
+                .map(mapper::bookingToModel)
+                .flatMap(useCase::saveBooking)
+                .flatMap(message -> ServerResponse.ok().bodyValue(message))
+                .doOnError(error -> ServerResponse.badRequest().bodyValue(error.getMessage()));
+    }
+
+    public Mono<ServerResponse> getBookings(ServerRequest serverRequest) {
+        return useCase.getBookings()
+                .collectList()
+                .flatMap(bookingGuest -> ServerResponse.ok().bodyValue(bookingGuest));
+    }
+
+    public Mono<ServerResponse> getExpensesByBooking(ServerRequest serverRequest) {
+        return useCase.getExpenseByBooking(serverRequest.pathVariable("bookingId"))
+                .collectList()
+                .flatMap(expenses -> ServerResponse.ok().bodyValue(expenses));
     }
 }
